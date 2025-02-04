@@ -41,7 +41,7 @@ server {
 	root /var/www/html;
 
 	# Add index.php to the list if you are using PHP
-	index index.html index.htm test.html;
+	index index.html index.htm;
 
 	server_name _;
 

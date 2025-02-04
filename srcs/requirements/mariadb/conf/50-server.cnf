@@ -1,0 +1,38 @@
+# brackets [] define sections
+
+[server]
+# This section configurate all MariaDB/MySQL server
+# In this case, is empty.
+
+[mysqld]
+#This section only affects to the MariaDB/MySQL server. the "d" of "mysqld" is for daemon.
+
+### -  MYSQLD SECTION - ###
+
+user                    = mysql
+# This specifies the system user that the MariaDB server will run as.
+
+datadir                 = /var/lib/mysql
+# This specifies the directory where the MariaDB database files are stored.
+# It is crucial that the datadir has enough space.
+
+bind-address            = ::
+# This specifies define the range of IPs that can listen.
+# In this case, because is ::, it can listen to all IPs, regardless of whether they are IPv4 or IPv6.
+
+socket                  = /var/run/mysqld/mysqld.sock
+# This is a special file that allows comunnication within the same server.
+# This make the communication more efficient.
+
+port                    = 3306
+# This specifies where mysql is listening
+# Subject expecification
+
+log-error               = /var/log/mysql/error.log
+
+general_log             = 1
+# Enables general logging of all queries and connections made to the MySQL server.
+# 1 means it is enable.
+
+general_log_file        = /var/log/mysql/general.log
+# Defines the path of the file where the general log of MySQL will be stored.
