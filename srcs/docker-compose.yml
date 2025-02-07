@@ -1,8 +1,21 @@
 services:
  wordpress:
+  container_name: wordpress
+  build: ./requirements/wordpress
  mariadb:
+  container_name: mariadb
+  build: ./requirements/mariadb
  nginx:
+  container_name: nginx
+  build: ./requirements/nginx/
+  env_file: .env
+  ports:
+      - 443:443
+  networks:
+      - inception
 
 volumes:
 
 networks:
+ inception:
+  name: inception
