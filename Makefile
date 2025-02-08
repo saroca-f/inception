@@ -25,3 +25,5 @@ clean:
 # Rebuild images and volumes
 recreate:
 	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate
+
+.PHONY: stop clean re all
