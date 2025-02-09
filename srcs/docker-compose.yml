@@ -23,9 +23,10 @@ volumes:
       device: ${MARIADB_DATA_LOCATION}
   wordpress:
     driver: local
-    type: none
-    o: bind
-    device: ${WORDPRESS_DATA_LOCATION}
+    driver_opts:
+      type: none
+      o: bind
+      device: ${WORDPRESS_DATA_LOCATION}
 
 networks:
  inception:
