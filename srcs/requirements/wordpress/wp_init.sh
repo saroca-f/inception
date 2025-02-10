@@ -62,5 +62,7 @@ wp user create $WP_USR $WP_EMAIL	--role=author \
 									--user_pass=$WP_PWD \
 									--allow-root
 
+wp theme install inspire --allow-root 
+
 # Init the PHP-FPM service in foreground (-F).
 php-fpm${PHP_VERSION} -F
