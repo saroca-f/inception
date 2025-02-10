@@ -1,9 +1,10 @@
 all:
-	@if [ ! -f ./srcs/.env ]; then \
-		read -p "The .env file already exists. Do you want to renew it? (y/n): " choice; \
+	@if [ -f ./srcs/.env ]; then \
+		read -p "Do you want to renew environment variables? (y/n): " choice; \
 		if [ "$$choice" = "y" ]; then \
 			bash ./srcs/env_builder.sh; \
-            mv ./.env ./srcs/.env; \
+			mv ./.env ./srcs/.env; \
+		fi \
 	else \
 		bash ./srcs/env_builder.sh; \
 		mv ./.env ./srcs/.env; \
