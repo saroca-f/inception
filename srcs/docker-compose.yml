@@ -20,10 +20,12 @@ services:
   image: nginx:1.0.0
   build: ./requirements/nginx/
   env_file: .env
+  depends_on:
+    - wordpress
   ports:
-      - 443:443
+    - 443:443
   networks:
-      - inception
+    - inception
 
 volumes:
   mariadb:
