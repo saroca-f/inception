@@ -1,12 +1,16 @@
 all:
 	@if [ ! -f ./srcs/.env ]; then \
+		read -p "The .env file already exists. Do you want to renew it? (y/n): " choice; \
+		if [ "$$choice" = "y" ]; then \
+			bash ./srcs/env_builder.sh; \
+            mv ./.env ./srcs/.env; \
+	else \
 		bash ./srcs/env_builder.sh; \
 		mv ./.env ./srcs/.env; \
 	fi
 	@mkdir -p ~/data
 	@mkdir -p ~/data/mariadb ~/data/wordpress
 	@docker-compose -f ./srcs/docker-compose.yml up -d --build
-	@echo "Prueba"
 
 down:
 	docker-compose -f ./srcs/docker-compose.yml down
