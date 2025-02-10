@@ -17,10 +17,10 @@ down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 erase:
-	@docker stop $(docker ps -qa) || true
-	@docker rm $(docker ps -qa) || true
-	@docker rmi -f $(docker images -qa) || true
-	@docker volume rm $(docker volume ls -q) || true
+	@docker ps -qa | xargs -r docker stop
+	@docker ps -qa | xargs -r docker rm
+	@docker images -qa | xargs -r docker rmi -f
+	@docker volume ls -q | xargs -r docker volume rm
 
 re: stop all
 
