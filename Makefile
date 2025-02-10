@@ -1,6 +1,6 @@
 all:
 	@bash ./srcs/env_builder.sh
-	@move ./.env ./srcs/.env
+	@mv ./.env ./srcs/.env
 	@mkdir -p ~/data
 	@mkdir -p ~/data/mariadb ~/data/nginx
 	@sudo docker-compose -f ./srcs/docker-compose.yml up -d --build
