@@ -12,6 +12,6 @@ COPY	./index.html /var/www/html
 COPY	./conf/default  /etc/nginx/sites-enabled/default
 COPY	./conf/nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE  80
+EXPOSE  443
 
 CMD     ["nginx", "-g", "daemon off;"]
