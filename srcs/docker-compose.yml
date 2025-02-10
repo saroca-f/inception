@@ -6,7 +6,7 @@ services:
   restart: always
   env_file: .env
   volumes:
-    - wordpress:/var/www/html
+    - db_wordpress:/var/www/html
   depends_on:
     - mariadb
   networks:
@@ -17,7 +17,7 @@ services:
   env_file: .env
   build: ./requirements/mariadb/
   volumes:
-    - mariadb:/var/lib/mysql
+    - db_mariadb:/var/lib/mysql
   restart: always
   networks:
       - inception
@@ -28,7 +28,7 @@ services:
   env_file: .env
   restart: always
   volumes:
-    - wordpress:/var/www/html
+    - db_wordpress:/var/www/html
   depends_on:
     - wordpress
   ports:
@@ -38,12 +38,14 @@ services:
 
 volumes:
   mariadb:
+    name: db_mariadb
     driver: local
     driver_opts:
       type: none
       o: bind
       device: ${MARIADB_DATA_LOCATION}
   wordpress:
+    name: db_wordpress
     driver: local
     driver_opts:
       type: none
