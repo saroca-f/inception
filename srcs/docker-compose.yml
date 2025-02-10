@@ -3,6 +3,7 @@ services:
   container_name: wordpress
   image: wordpress:1.0.0
   build: ./requirements/wordpress/
+  restart: always
   env_file: .env
   depends_on:
     - mariadb
@@ -13,6 +14,7 @@ services:
   image: mariadb:1.0.0
   env_file: .env
   build: ./requirements/mariadb/
+  restart: always
   networks:
       - inception
  nginx:
@@ -20,6 +22,7 @@ services:
   image: nginx:1.0.0
   build: ./requirements/nginx/
   env_file: .env
+  restart: always
   depends_on:
     - wordpress
   ports:
