@@ -37,14 +37,14 @@ services:
     - inception
 
 volumes:
-  mariadb:
+  db_mariadb:
     name: db_mariadb
     driver: local
     driver_opts:
       type: none
       o: bind
       device: ${MARIADB_DATA_LOCATION}
-  wordpress:
+  db_wordpress:
     name: db_wordpress
     driver: local
     driver_opts:
