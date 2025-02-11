@@ -11,8 +11,6 @@ all:
 	fi
 	@mkdir -p ~/data
 	@mkdir -p ~/data/mariadb ~/data/wordpress
-	@chown -R $(id -u):$(id -g) ~/data/mariadb ~/data/wordpress
-	@chmod -R 777 ~/data/mariadb ~/data/wordpress
 	@sleep 1
 	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
@@ -24,8 +22,8 @@ erase:
 	@docker ps -qa | xargs -r docker rm
 	@docker images -qa | xargs -r docker rmi -f
 	@docker volume ls -q | xargs -r docker volume rm
-	#@rm -rf ~/data
-	#@rm -rf ~/data/mariadb ~/data/wordpress
+	@rm -rf ~/data
+	@rm -rf ~/data/mariadb ~/data/wordpress
 
 re: stop all
 
