@@ -62,6 +62,8 @@ USER_ID=$(id -u)
 
 GROUP_ID=$(id -g)
 
+read -p "$USER_ID | $GROUP_ID"
+
 cat <<EOL > $ENV_FILE
 
 SQL_DATABASE=$SQL_DATABASE

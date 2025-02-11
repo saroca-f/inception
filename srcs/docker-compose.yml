@@ -12,8 +12,8 @@ services:
   networks:
     - inception
   environment:
-      - MYSQL_USER_ID=1000
-      - MYSQL_GROUP_ID=1000
+    - MYSQL_USER_ID=${USER_ID}
+    - MYSQL_GROUP_ID=${GROUP_ID}
   user: "${USER_ID}:${GROUP_ID}"
  mariadb:
   container_name: mariadb
@@ -26,8 +26,8 @@ services:
   networks:
       - inception
   environment:
-    - MYSQL_USER_ID=1000
-    - MYSQL_GROUP_ID=1000
+    - MYSQL_USER_ID=${USER_ID}
+    - MYSQL_GROUP_ID=${GROUP_ID}
   user: "${USER_ID}:${GROUP_ID}"
  nginx:
   container_name: nginx
@@ -44,8 +44,8 @@ services:
   networks:
     - inception
   environment:
-    - MYSQL_USER_ID=1000
-    - MYSQL_GROUP_ID=1000
+    - MYSQL_USER_ID=${USER_ID}
+    - MYSQL_GROUP_ID=${GROUP_ID}
   user: "${USER_ID}:${GROUP_ID}"
 
 volumes:
