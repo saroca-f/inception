@@ -28,7 +28,6 @@ NAME_USER="sergio"
 
 ENV_FILE=".env"
 
-
 read -p "Enter SQL database name: (default: my_database) " SQL_DATABASE
 SQL_DATABASE=${SQL_DATABASE:-my_database}
 
@@ -59,7 +58,12 @@ WP_PWD=$(prompt_with_loop "Enter WordPress user password: ")
 
 WP_URL=${WP_URL:-$INCEPTION_USER.42.fr}
 
+USER_ID=$(id -u)
+
+GROUP_ID=$(id -g)
+
 cat <<EOL > $ENV_FILE
+
 SQL_DATABASE=$SQL_DATABASE
 SQL_USER=$SQL_USER
 SQL_PASSWORD=$SQL_PASSWORD
@@ -72,6 +76,8 @@ WP_ADMIN_EMAIL=$WP_ADMIN_EMAIL
 WP_USR=$WP_USR
 WP_EMAIL=$WP_EMAIL
 WP_PWD=$WP_PWD
+USER_ID=$USER_ID
+GROUP_ID=$GROUP_ID
 WORDPRESS_DATA_LOCATION="/home/$INCEPTION_USER/data/wordpress"
 MARIADB_DATA_LOCATION="/home/$INCEPTION_USER/data/mariadb"
 EOL

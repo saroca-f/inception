@@ -22,8 +22,8 @@ erase:
 	@docker ps -qa | xargs -r docker rm
 	@docker images -qa | xargs -r docker rmi -f
 	@docker volume ls -q | xargs -r docker volume rm
-	@rm -rf ~/data
 	@rm -rf ~/data/mariadb ~/data/wordpress
+	@rm -rf ~/data
 
 re: stop all
 

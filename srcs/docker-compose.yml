@@ -14,7 +14,7 @@ services:
   environment:
       - MYSQL_USER_ID=1000
       - MYSQL_GROUP_ID=1000
-  user: "1000:1000"
+  user: "${USER_ID}:${GROUP_ID}"
  mariadb:
   container_name: mariadb
   image: mariadb:1.0.0
@@ -28,7 +28,7 @@ services:
   environment:
     - MYSQL_USER_ID=1000
     - MYSQL_GROUP_ID=1000
-  user: "1000:1000"
+  user: "${USER_ID}:${GROUP_ID}"
  nginx:
   container_name: nginx
   image: nginx:1.0.0
@@ -46,7 +46,7 @@ services:
   environment:
     - MYSQL_USER_ID=1000
     - MYSQL_GROUP_ID=1000
-  user: "1000:1000"
+  user: "${USER_ID}:${GROUP_ID}"
 
 volumes:
   db_mariadb:
