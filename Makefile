@@ -11,16 +11,19 @@ all:
 	fi
 	@mkdir -p ~/data
 	@mkdir -p ~/data/mariadb ~/data/wordpress
+	@chmod 777 ~/data ~/data/mariadb ~/data/wordpress
 	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	docker compose -f ./srcs/docker-compose.yml down
+	@docker compose -f ./srcs/docker-compose.yml down
 
 erase:
 	@docker ps -qa | xargs -r docker stop
 	@docker ps -qa | xargs -r docker rm
 	@docker images -qa | xargs -r docker rmi -f
 	@docker volume ls -q | xargs -r docker volume rm
+	@rm -rf ~/data
+	@rm -rf ~/data/mariadb ~/data/wordpress
 
 re: stop all
 
@@ -33,10 +36,7 @@ wordpress:
 nginx:
 	docker exec -it nginx /bin/bash
 
-clean:
-	docker volume rm mariadb wordpress
-
 recreate:
 	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate
 
-.PHONY: stop clean re all
+.PHONY: stop erase recreate nginx wordpress mariadb re all
