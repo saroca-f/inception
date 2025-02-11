@@ -11,10 +11,10 @@ all:
 	fi
 	@mkdir -p ~/data
 	@mkdir -p ~/data/mariadb ~/data/wordpress
-	@docker-compose -f ./srcs/docker-compose.yml up -d --build
+	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	docker-compose -f ./srcs/docker-compose.yml down
+	docker compose -f ./srcs/docker-compose.yml down
 
 erase:
 	@docker ps -qa | xargs -r docker stop
@@ -37,6 +37,6 @@ clean:
 	docker volume rm mariadb wordpress
 
 recreate:
-	docker-compose -f ./srcs/docker-compose.yml up -d --build --force-recreate
+	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate
 
 .PHONY: stop clean re all
