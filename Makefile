@@ -11,8 +11,8 @@ all:
 	fi
 	@mkdir -p ~/data
 	@mkdir -p ~/data/mariadb ~/data/wordpress
-	@chmod 777 ~/data ~/data/mariadb ~/data/wordpress
 	@docker compose -f ./srcs/docker-compose.yml up -d --build
+	@chmod 777 ~/data ~/data/mariadb ~/data/wordpress
 
 down:
 	@docker compose -f ./srcs/docker-compose.yml down
