@@ -44,6 +44,7 @@ volumes:
       type: none
       o: bind
       device: ${MARIADB_DATA_LOCATION}
+      mode: "0777"
   db_wordpress:
     name: db_wordpress
     driver: local
@@ -51,6 +52,7 @@ volumes:
       type: none
       o: bind
       device: ${WORDPRESS_DATA_LOCATION}
+      mode: "0777"
 
 networks:
  inception:
