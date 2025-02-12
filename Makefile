@@ -21,7 +21,7 @@ erase:
 	@docker ps -qa | xargs -r docker rm
 	@docker images -qa | xargs -r docker rmi -f
 	@docker volume ls -q | xargs -r docker volume rm
-	@docker system prune -a --volume
+	@docker system prune -a --volumes -f
 reset:
 	@sudo rm -rf ~/data/mariadb ~/data/wordpress
 	@sudo rm -rf ~/data
