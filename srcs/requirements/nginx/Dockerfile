@@ -9,7 +9,6 @@ RUN		mkdir -p /etc/nginx/ssl \
 		-subj "/C=ES/ST=Malaga/L=Malaga/O=42/OU=Mente_galaxia/CN=saroca-f"
 
 COPY	./index.html /var/www/html
-COPY	./conf/default  /etc/nginx/sites-enabled/default
 COPY	./conf/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE  443
