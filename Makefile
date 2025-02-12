@@ -23,10 +23,8 @@ erase:
 	@docker volume ls -q | xargs -r docker volume rm
 
 reset:
-	@chmod 777 ~/data/mariadb ~/data/wordpress
-	@chmod 777 ~/data
-	@rm -rf ~/data/mariadb ~/data/wordpress
-	@rm -rf ~/data
+	@sudo rm -rf ~/data/mariadb ~/data/wordpress
+	@sudo rm -rf ~/data
 
 re: stop all
 
