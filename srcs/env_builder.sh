@@ -58,8 +58,6 @@ WP_PWD=$(prompt_with_loop "Enter WordPress user password: ")
 
 WP_URL=${WP_URL:-$INCEPTION_USER.42.fr}
 
-read -p "$USER_ID | $GROUP_ID"
-
 cat <<EOL > $ENV_FILE
 
 SQL_DATABASE=$SQL_DATABASE
