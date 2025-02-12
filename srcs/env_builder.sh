@@ -58,10 +58,6 @@ WP_PWD=$(prompt_with_loop "Enter WordPress user password: ")
 
 WP_URL=${WP_URL:-$INCEPTION_USER.42.fr}
 
-USER_ID=$(id -u)
-
-GROUP_ID=$(id -g)
-
 read -p "$USER_ID | $GROUP_ID"
 
 cat <<EOL > $ENV_FILE
@@ -78,8 +74,6 @@ WP_ADMIN_EMAIL=$WP_ADMIN_EMAIL
 WP_USR=$WP_USR
 WP_EMAIL=$WP_EMAIL
 WP_PWD=$WP_PWD
-USER_ID=$USER_ID
-GROUP_ID=$GROUP_ID
 WORDPRESS_DATA_LOCATION="/home/$INCEPTION_USER/data/wordpress"
 MARIADB_DATA_LOCATION="/home/$INCEPTION_USER/data/mariadb"
 EOL

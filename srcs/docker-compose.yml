@@ -11,10 +11,6 @@ services:
     - mariadb
   networks:
     - inception
-  environment:
-    - MYSQL_USER_ID=${USER_ID}
-    - MYSQL_GROUP_ID=${GROUP_ID}
-  user: "${USER_ID}:${GROUP_ID}"
  mariadb:
   container_name: mariadb
   image: mariadb:1.0.0
@@ -25,10 +21,6 @@ services:
   restart: always
   networks:
       - inception
-  environment:
-    - MYSQL_USER_ID=${USER_ID}
-    - MYSQL_GROUP_ID=${GROUP_ID}
-  user: "${USER_ID}:${GROUP_ID}"
  nginx:
   container_name: nginx
   image: nginx:1.0.0
@@ -43,10 +35,6 @@ services:
     - 443:443
   networks:
     - inception
-  environment:
-    - MYSQL_USER_ID=${USER_ID}
-    - MYSQL_GROUP_ID=${GROUP_ID}
-  user: "${USER_ID}:${GROUP_ID}"
 
 volumes:
   db_mariadb:
