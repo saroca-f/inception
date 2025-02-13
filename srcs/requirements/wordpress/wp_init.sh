@@ -62,6 +62,15 @@ wp user create $WP_USR $WP_EMAIL	--role=author \
 									--user_pass=$WP_PWD \
 									--allow-root
 
+wp config set WP_REDIS_HOST 'redis' --allow-root 
+wp config set WP_REDIS_PORT 6379 --raw --allow-root
+wp config set WP_CACHE true --raw --allow-root
+wp config set WP_CACHE_KEY_SALT 'mywordpresssite_' --allow-root
+wp config set WP_REDIS_CLIENT 'phpredis' --allow-root
+
+wp plugin install redis-cache --activate --allow-root
+wp redis enable --allow-root
+
 wp theme install inspire --allow-root 
 
 # Init the PHP-FPM service in foreground (-F).

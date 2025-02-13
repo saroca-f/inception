@@ -3,12 +3,13 @@ services:
   container_name: wordpress
   image: wordpress:1.0.0
   build: ./requirements/wordpress/
-  restart: always
+  restart: unless-stopped
   env_file: .env
   volumes:
     - db_wordpress:/var/www/html
   depends_on:
     - mariadb
+    - redis
   networks:
     - inception
  mariadb:
@@ -18,7 +19,7 @@ services:
   build: ./requirements/mariadb/
   volumes:
     - db_mariadb:/var/lib/mysql
-  restart: always
+  restart: unless-stopped
   networks:
       - inception
  nginx:
@@ -26,13 +27,24 @@ services:
   image: nginx:1.0.0
   build: ./requirements/nginx/
   env_file: .env
-  restart: always
+  restart: unless-stopped
   volumes:
     - db_wordpress:/var/www/html
   depends_on:
     - wordpress
   ports:
     - 443:443
+  networks:
+    - inception
+
+redis:
+  container_name: redis
+  image: redis:1.0.0
+  build: ./requirements/redis/
+  env_file: .env
+  restart: unless-stopped
+  volumes:
+    - wordpress_data:/var/www/html
   networks:
     - inception
 
