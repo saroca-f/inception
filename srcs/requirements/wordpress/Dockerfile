@@ -12,6 +12,8 @@ RUN apt install -y php-fpm php-mysql
 # php-fmp (FastCGI Process Manager): It is used to manage multiple request more efficiently.
 # php-mysql: An extension that allows PHP connec to MySQL/MariaDB datebases.
 
+RUN apt install php-redis -y
+
 # Create web director
 RUN mkdir -p /var/www/html
 # -p: That create all parent directories if they do not exist.
@@ -32,7 +34,7 @@ RUN tar -xzf /tmp/wordpress.tar.gz -C /var/www/html && rm /tmp/wordpress.tar.gz
 RUN apt install -y mariadb-client
 # It is important for comunnicating with the MariaDB Docker container.
 
-COPY wp_init.sh /
+COPY ./wp_init.sh /
 
 EXPOSE 9000
 
