@@ -1,53 +1,54 @@
 services:
- wordpress:
-  container_name: wordpress
-  image: wordpress:1.0.0
-  build: ./requirements/wordpress/
-  restart: unless-stopped
-  env_file: .env
-  volumes:
-    - db_wordpress:/var/www/html
-  depends_on:
-    - mariadb
-  networks:
-    - inception
- mariadb:
-  container_name: mariadb
-  image: mariadb:1.0.0
-  env_file: .env
-  build: ./requirements/mariadb/
-  volumes:
-    - db_mariadb:/var/lib/mysql
-  restart: unless-stopped
-  networks:
+  wordpress:
+    container_name: wordpress
+    image: wordpress:1.0.0
+    build: ./requirements/wordpress/
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - db_wordpress:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
       - inception
- nginx:
-  container_name: nginx
-  image: nginx:1.0.0
-  build: ./requirements/nginx/
-  env_file: .env
-  restart: unless-stopped
-  volumes:
-    - db_wordpress:/var/www/html
-  depends_on:
-    - wordpress
-  ports:
-    - 443:443
-  networks:
-    - inception
 
- redis:
-  container_name: redis
-  image: redis:1.0.0
-  build: ./requirements/redis/
-  env_file: .env
-  restart: unless-stopped
-  depends_on:
-    - wordpress
-  volumes:
-    - db_wordpress:/var/www/html
-  networks:
-    - inception
+  mariadb:
+    container_name: mariadb
+    image: mariadb:1.0.0
+    env_file: .env
+    build: ./requirements/mariadb/
+    volumes:
+      - db_mariadb:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - inception
+  nginx:
+    container_name: nginx
+    image: nginx:1.0.0
+    build: ./requirements/nginx/
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - db_wordpress:/var/www/html
+    depends_on:
+      - wordpress
+    ports:
+      - 443:443
+    networks:
+      - inception
+
+  redis:
+    container_name: redis
+    image: redis:1.0.0
+    build: ./requirements/redis/
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - wordpress
+    volumes:
+      - db_wordpress:/var/www/html
+    networks:
+      - inception
 
 volumes:
   db_mariadb:
@@ -66,6 +67,6 @@ volumes:
       device: ${WORDPRESS_DATA_LOCATION}
 
 networks:
- inception:
-  name: inception
-  driver: bridge
+  inception:
+    name: inception
+    driver: bridge
