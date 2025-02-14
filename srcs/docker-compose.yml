@@ -9,7 +9,6 @@ services:
     - db_wordpress:/var/www/html
   depends_on:
     - mariadb
-    - redis
   networks:
     - inception
  mariadb:
@@ -43,6 +42,8 @@ redis:
   build: ./requirements/redis/
   env_file: .env
   restart: unless-stopped
+  depends_on:
+    - wordpress
   volumes:
     - wordpress_data:/var/www/html
   networks:
