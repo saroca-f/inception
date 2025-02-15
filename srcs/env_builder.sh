@@ -58,6 +58,11 @@ WP_PWD=$(prompt_with_loop "Enter WordPress user password: ")
 
 WP_URL=${WP_URL:-$INCEPTION_USER.42.fr}
 
+read -p "Enter FTP_Server user (default: $INCEPTION_USER):" FTP_USER
+FTP_USER=${FTP_USER:-$FTP_USER}
+
+FTP_PASSWORD=$(prompt_with_loop "Enter FTP_Server password: ")
+
 cat <<EOL > $ENV_FILE
 
 SQL_DATABASE=$SQL_DATABASE
@@ -74,4 +79,6 @@ WP_EMAIL=$WP_EMAIL
 WP_PWD=$WP_PWD
 WORDPRESS_DATA_LOCATION="/home/$INCEPTION_USER/data/wordpress"
 MARIADB_DATA_LOCATION="/home/$INCEPTION_USER/data/mariadb"
+FTP_USER=$FTP_USER
+FTP_PASSWORD=$FTP_PASSWORD
 EOL
