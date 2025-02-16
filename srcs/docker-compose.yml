@@ -49,6 +49,17 @@ services:
       - db_wordpress:/var/www/html
     networks:
       - inception
+    
+    fpt-server:
+      container_name: ftp-server
+      image: ftp-server:1.0.0
+      build: ./requirements/ftp-server
+      env_file: .env
+      restart: unless-stopped
+      volumes:
+      - db_wordpress:/var/www/html
+      networks:
+        - inception
 
 volumes:
   db_mariadb:
