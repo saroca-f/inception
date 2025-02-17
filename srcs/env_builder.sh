@@ -59,7 +59,7 @@ WP_PWD=$(prompt_with_loop "Enter WordPress user password: ")
 WP_URL=${WP_URL:-$INCEPTION_USER.42.fr}
 
 read -p "Enter FTP_Server user (default: $INCEPTION_USER):" FTP_USER
-FTP_USER=${FTP_USER:-$FTP_USER}
+FTP_USER=${FTP_USER:-$INCEPTION_USER}
 
 FTP_PASSWORD=$(prompt_with_loop "Enter FTP_Server password: ")
 
