@@ -6,6 +6,7 @@ if [ ! -f "/etc/vsftpd/vsftpd.conf.bak" ]; then
     mkdir -p /var/www/html
     mkdir -p /var/run/vsftpd/empty
 
+    mv /etc/vsftpd.conf /etc/vsftpd/vsftpd.conf
     cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
 
     sed -i "s|listen=NO|listen=YES|g" /etc/vsftpd/vsftpd.conf
