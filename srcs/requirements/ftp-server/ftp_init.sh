@@ -3,9 +3,9 @@
 if [ ! -f "/etc/vsftpd/vsftpd.conf.bak" ]; then
 
     mkdir -p /var/www/html
+    mkdir -p /var/run/vsftpd/empty
 
     cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
-    mv /tmp/vsftpd.conf /etc/vsftpd/vsftpd.conf
 
     sed -i "s|listen=NO|listen=YES|g" /etc/vsftpd.conf
     sed -i "s|anonymous_enable=NO|anonymous_enable=YES|g" /etc/vsftpd.conf
@@ -31,10 +31,8 @@ if [ ! -f "/etc/vsftpd/vsftpd.conf.bak" ]; then
     echo "userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
     echo "userlist_deny=NO" >> /etc/vsftpd.conf
 
-    # Create ftp_server user and asing a password
     useradd -m -d /var/www "$FTP_USER" && echo "$FTP_USER:$FTP_PASSWORD" | chpasswd
 
-    # Add ftp_user user to the www-data group with security
     usermod -aG www-data "$FTP_USER"
 
     chown -R $FTP_USER:$FTP_USER /var/www/html
