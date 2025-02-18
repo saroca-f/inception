@@ -27,7 +27,7 @@ if [ ! -f "/etc/vsftpd/vsftpd.conf.bak" ]; then
     echo "listen_address=0.0.0.0" >> /etc/vsftpd/vsftpd.conf
     echo "seccomp_sandbox=NO" >> /etc/vsftpd/vsftpd.conf
     echo "pasv_enable=YES" >> /etc/vsftpd/vsftpd.conf
-    echo "pasv_max_port=21100" >> /etc/vsftpd/vsftpd.conf
+    echo "pasv_min_port=21100" >> /etc/vsftpd/vsftpd.conf
     echo "pasv_max_port=21110" >> /etc/vsftpd/vsftpd.conf
     echo "userlist_enable=YES" >> /etc/vsftpd/vsftpd.conf
     echo "userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd/vsftpd.conf
