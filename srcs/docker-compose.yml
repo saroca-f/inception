@@ -20,6 +20,8 @@ services:
     volumes:
       - db_mariadb:/var/lib/mysql
     restart: unless-stopped
+    expose:
+      - "3306"
     networks:
       - inception
   nginx:
