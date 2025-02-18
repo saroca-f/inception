@@ -12,7 +12,6 @@ if [ ! -f "/etc/vsftpd.conf.bak" ]; then
     sed -i "s|#write_enable=YES|write_enable=YES|g" /etc/vsftpd.conf
     sed -i "s|#ftpd_banner=Welcome to blah FTP service.|ftpd_banner=Welcome to Inception FTP server!|g" /etc/vsftpd.conf
     sed -i "s|#chroot_local_user=YES|chroot_local_user=YES|g" /etc/vsftpd.conf
-    #sed -i "s|#chroot_list_enable=YES|chroot_list_enable=YES|g" /etc/vsftpd.conf
     sed -i "s|secure_chroot_dir=/var/run/vsftpd/empty|#secure_chroot_dir=/var/run/vsftpd/empty|g" /etc/vsftpd.conf
     sed -i "s|listen_ipv6=YES|#listen_ipv6=YES|g" /etc/vsftpd.conf
 
