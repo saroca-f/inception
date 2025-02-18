@@ -50,6 +50,8 @@ if [ ! -f "/etc/vsftpd/vsftpd.conf.bak" ]; then
     chown -R www-data /var/www
 
     chmod -R 777 /var/www
+
+    echo "Entra"
 fi
 
 echo "FTP started on :21"
