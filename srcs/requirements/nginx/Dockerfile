@@ -15,6 +15,8 @@ EXPOSE  443
 
 #BONUS PART
 RUN		mkdir -p /usr/share/nginx/static/
+RUN		mkdir -p /usr/share/nginx/static/image
 COPY	./tools/index.html /usr/share/nginx/static/index.html
+COPY	./tools/image/inception.gif /usr/share/nginx/static/image/inception.gif
 
 CMD     ["nginx", "-g", "daemon off;"]
