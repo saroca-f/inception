@@ -58,9 +58,9 @@ services:
     build: ./requirements/ftp-server
     env_file: .env
     restart: unless-stopped
-    ports:
-      - "21:21"
-      - "21100-21110:21100-21110"
+#    ports:
+#      - "21:21"
+#      - "21100-21110:21100-21110"
     volumes:
     - db_wordpress:/var/www/html
     networks:
