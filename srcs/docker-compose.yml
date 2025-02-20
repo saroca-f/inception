@@ -65,6 +65,17 @@ services:
     - db_wordpress:/var/www/html
     networks:
     - inception
+  
+  adminer:
+    container_name: adminer
+    image: adminer:1.0.0
+    build: ./requirements/adminer
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    networks:
+      - inception
 
 volumes:
   db_mariadb:
