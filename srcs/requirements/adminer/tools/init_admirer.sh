@@ -8,6 +8,6 @@ mv /etc/php/$VERSION/fpm/pool.d/www.conf /etc/php/$VERSION/fpm/pool.d/test
 
 sed -i "s|listen = /run/php/php7.4-fpm.sock|listen = 9000|g" /etc/php/$VERSION/fpm/pool.d/test
 
-mv /etc/php/$VERSION/fpm/pool.d/testo /etc/php/$VERSION/fpm/pool.d/www.conf 
+mv /etc/php/$VERSION/fpm/pool.d/test /etc/php/$VERSION/fpm/pool.d/www.conf 
 
 php-fpm$VERSION -F
