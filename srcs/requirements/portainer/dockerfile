@@ -2,7 +2,8 @@ FROM	debian:bullseye
 
 # Actualizar los paquetes e instalar dependencias
 RUN apt update -y && apt upgrade -y \
-    && apt install -y nginx openssl curl gnupg2 apt-transport-https ca-certificates software-properties-common
+    && apt install -y nginx openssl curl gnupg2 apt-transport-https \
+       ca-certificates software-properties-common
 
 # Instalar Docker
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
@@ -10,12 +11,5 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
     && apt update -y \
     && apt install -y docker-ce docker-ce-cli containerd.io
 
-# Descargar e iniciar Portainer
-RUN docker volume create portainer_data \
-    && docker run -d -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
-
-# Exponer el puerto 9000 para Portainer
-EXPOSE 9000
-
-# Comando para iniciar Nginx y Docker en primer plano
-CMD ["sh", "-c", "service nginx start && tail -f /dev/null"]
+# Comando para iniciar Nginx en primer plano
+CMD ["nginx", "-g", "daemon off;"]
