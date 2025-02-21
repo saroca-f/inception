@@ -66,6 +66,19 @@ services:
     networks:
     - inception
 
+  adminer:
+    container_name: adminer
+    image: adminer:1.0.0
+    build: ./requirements/adminer
+    expose:
+      - "9000"
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -78,17 +91,6 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
-
-  adminer:
-    container_name: adminer
-    image: adminer:1.0.0
-    build: ./requirements/adminer
-    expose:
-      - "9000"
-    env_file: .env
-    restart: unless-stopped
-    depends_on:
-      - mariadb
     networks:
       - inception
 
