@@ -6,7 +6,7 @@ RUN apt update -y && apt upgrade -y \
     && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Exponer el puerto de Nginx (si es necesario)
-EXPOSE 80
+EXPOSE 443
 
 # Iniciar Nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
