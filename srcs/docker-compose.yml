@@ -79,6 +79,13 @@ services:
     networks:
       - inception
 
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter
+    container_name: nginx-exporter
+    command: ["-nginx.scrape-uri", "http://nginx:80/stub_status"]
+    networks:
+      - inception
+
 volumes:
   db_mariadb:
     name: db_mariadb
