@@ -30,13 +30,15 @@ if [ ! -f "/etc/vsftpd.conf.bak" ]; then
     echo "userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
     echo "userlist_deny=NO" >> /etc/vsftpd.conf
 
-    if [ ! -d "/var/www" ]; then
-        useradd -m -d /var/www "$FTP_USER"
-    else 
-        useradd -d /var/www "$FTP_USER"
-    fi
+    #if [ ! -d "/var/www" ]; then
+    #    useradd -m -d /var/www "$FTP_USER"
+    #else 
+    #    useradd -d /var/www "$FTP_USER"
+    #fi
     
-    echo "$FTP_USER:$FTP_PASSWORD" | chpasswd
+    #echo "$FTP_USER:$FTP_PASSWORD" | chpasswd
+
+    useradd -m -d /var/www "$FTP_USER" && echo "$FTP_USER:$FTP_PASSWORD" | chpasswd
 
     usermod -aG www-data "$FTP_USER"
 
@@ -47,8 +49,6 @@ if [ ! -f "/etc/vsftpd.conf.bak" ]; then
     chown -R www-data /var/www
 
     chmod -R 777 /var/www
-
-    echo "Entra"
 fi
 
 echo "FTP started on :21"
