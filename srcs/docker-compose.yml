@@ -82,6 +82,7 @@ services:
   portainer:
     container_name: portainer
     image: portainer:1.0.0
+    build: ./requirements/portainer
     restart: unless-stopped
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -107,6 +108,8 @@ volumes:
       o: bind
       device: ${WORDPRESS_DATA_LOCATION}
   db_portainer:
+    name: db_portainer
+    driver: local
     driver_opts:
       o: bind
       type: none
