@@ -52,7 +52,7 @@ services:
     networks:
       - inception
     
-  fpt-server:
+  ftp-server:
     container_name: ftp-server
     image: ftp-server:1.0.0
     build: ./requirements/ftp-server
@@ -86,7 +86,7 @@ services:
     restart: unless-stopped
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - db_portainer
+      - db_portainer:/data
     ports:
       - "9443:9443"
     networks:
