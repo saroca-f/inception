@@ -79,10 +79,12 @@ services:
     networks:
       - inception
 
-  nginx-exporter:
-    image: nginx/nginx-prometheus-exporter
-    container_name: nginx-exporter
-    command: ["-nginx.scrape-uri", "http://nginx:80/stub_status"]
+  portainer:
+    container_name: portainer
+    image: portainer:1.0.0
+    build: ./requirements/portainer
+    env_file: .env
+    restart: unless-stopped
     networks:
       - inception
 
