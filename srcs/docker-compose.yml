@@ -34,7 +34,6 @@ services:
       - db_wordpress:/var/www/html
     depends_on:
       - wordpress
-      - portainer
     ports:
       - 443:443
     networks:
