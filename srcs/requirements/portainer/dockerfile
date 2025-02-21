@@ -1,28 +1,12 @@
-FROM	debian:bullseye
+FROM debian:bullseye
 
-# Actualizar los paquetes e instalar dependencias
+# Actualizar paquetes e instalar dependencias necesarias
 RUN apt update -y && apt upgrade -y \
-    && apt install -y nginx openssl curl gnupg2 apt-transport-https ca-certificates software-properties-common
+    && apt install -y nginx openssl curl gnupg2 apt-transport-https ca-certificates software-properties-common \
+    && apt clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar Docker
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
-    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
-    && apt update -y \
-    && apt install -y docker-ce docker-ce-cli containerd.io
+# Exponer el puerto de Nginx (si es necesario)
+EXPOSE 80
 
-# Descargar e iniciar Portainer
-RUN docker volume create portainer_data \
-    && docker run -d -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
-
-# Crear el volumen de datos para Portainer
-RUN docker volume create portainer_data
-
-# Descargar e iniciar el contenedor de Portainer
-RUN docker run -d --name portainer --restart=always \
-    -p 9000:9000 -p 9443:9443 \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data \
-    portainer/portainer-ce:latest
-
-# Comando para iniciar Nginx y Docker en primer plano
-CMD ["sh", "-c", "service nginx start && tail -f /dev/null"]
+# Iniciar Nginx en primer plano
+CMD ["nginx", "-g", "daemon off;"]
