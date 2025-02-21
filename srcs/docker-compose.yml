@@ -85,8 +85,8 @@ services:
     build: ./requirements/portainer
     env_file: .env
     restart: unless-stopped
-    ports:
-      - "9443:9443"
+    expose:
+      - "9443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
