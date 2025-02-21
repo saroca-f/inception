@@ -10,7 +10,7 @@ all:
 		mv ./.env ./srcs/.env; \
 	fi
 	@mkdir -p ~/data
-	@mkdir -p ~/data/mariadb ~/data/wordpress
+	@mkdir -p ~/data/mariadb ~/data/wordpress ~/data/portainer
 	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
