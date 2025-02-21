@@ -82,7 +82,7 @@ services:
   portainer:
     container_name: portainer
     image: portainer:1.0.0
-    #build: ./requirements/portainer
+    build: ./requirements/portainer
     env_file: .env
     restart: unless-stopped
     security_opt:
