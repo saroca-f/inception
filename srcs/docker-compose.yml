@@ -24,6 +24,7 @@ services:
       - "3306"
     networks:
       - inception
+
   nginx:
     container_name: nginx
     image: nginx:1.0.0
