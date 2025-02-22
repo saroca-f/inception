@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# This script must be executed with bash
-
-# Function used to ask for input without show the keys pressed
 prompt_with_loop()
 {
     local prompt_message=$1
